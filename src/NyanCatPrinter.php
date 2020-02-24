@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace NyanCat\PHPUnit;
-
-use NyanCat\Cat;
-use NyanCat\Rainbow;
-use NyanCat\Team;
-use NyanCat\Scoreboard;
+namespace Codelicia\NyanCat;
 
 use Fab\Factory as FabFactory;
+use NyanCat\Cat;
+use NyanCat\Rainbow;
+use NyanCat\Scoreboard;
+use NyanCat\Team;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\DefaultResultPrinter;
 
 /**
  * Mmmm poptarts...
@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestSuite;
  *
  * @author Jeff Welch <whatthejeff@gmail.com>
  */
-class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
+class NyanCatPrinter extends DefaultResultPrinter
 {
     /**
      * The Nyan Cat scoreboard.
@@ -68,10 +68,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    protected function writeProgress($progress)
+    protected function writeProgress($progress): void
     {
         if($this->debug) {
-            return parent::writeProgress($progress);
+            parent::writeProgress($progress);
+            return;
         }
 
         $this->scoreboard->score($progress);
@@ -80,7 +81,7 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    protected function printHeader()
+    protected function printHeader(): void
     {
         if (!$this->debug) {
             if (!$this->scoreboard->isRunning()) {
@@ -95,10 +96,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function addError(Test $test, \Exception $e, $time)
+    public function addError(Test $test, \Throwable $e, float $time): void
     {
         if ($this->debug) {
-            return parent::addError($test, $e, $time);
+            parent::addError($test, $e, $time);
+            return;
         }
 
         $this->writeProgress('fail');
@@ -108,10 +110,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function addFailure(Test $test, AssertionFailedError $e, $time)
+    public function addFailure(Test $test, AssertionFailedError $e, float $time): void
     {
         if ($this->debug) {
-            return parent::addFailure($test, $e, $time);
+            parent::addFailure($test, $e, $time);
+            return;
         }
 
         $this->writeProgress('fail');
@@ -121,10 +124,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function addIncompleteTest(Test $test, \Exception $e, $time)
+    public function addIncompleteTest(Test $test, \Throwable $e, float $time): void
     {
         if ($this->debug) {
-            return parent::addIncompleteTest($test, $e, $time);
+            parent::addIncompleteTest($test, $e, $time);
+            return;
         }
 
         $this->writeProgress('pending');
@@ -134,10 +138,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function addSkippedTest(Test $test, \Exception $e, $time)
+    public function addSkippedTest(Test $test, \Throwable $e, float $time): void
     {
         if ($this->debug) {
-            return parent::addSkippedTest($test, $e, $time);
+            parent::addSkippedTest($test, $e, $time);
+            return;
         }
 
         $this->writeProgress('pending');
@@ -147,10 +152,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function startTestSuite(TestSuite $suite)
+    public function startTestSuite(TestSuite $suite): void
     {
         if ($this->debug) {
-            return parent::startTestSuite($suite);
+            parent::startTestSuite($suite);
+            return;
         }
 
         if ($this->numTests == -1) {
@@ -162,10 +168,11 @@ class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * {@inheritdoc}
      */
-    public function endTest(Test $test, $time)
+    public function endTest(Test $test, float $time): void
     {
         if ($this->debug) {
-            return parent::endTest($test, $time);
+            parent::endTest($test, $time);
+            return;
         }
 
         if (!$this->lastTestFailed) {

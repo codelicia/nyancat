@@ -1,34 +1,34 @@
 {
-    "name": "whatthejeff/nyancat-phpunit-resultprinter",
+    "name": "codelicia/nyancat",
     "description": "Nyan Cat result printer for PHPUnit",
     "keywords": ["nyan","cat","rainbow","phpunit","tests"],
-    "homepage": "http://github.com/whatthejeff/nyancat-phpunit-resultprinter",
+    "homepage": "http://github.com/codelicia/nyancat",
     "license": "MIT",
     "authors": [
         {
             "name": "Jeff Welch",
             "email": "whatthejeff@gmail.com",
             "homepage": "http://whatthejeff.com"
+        },
+        {
+            "name": "Jefersson Nathan",
+            "email": "malukenho.dev@gmail.com",
+            "homepage": "http://malukenho.dev"
         }
     ],
     "support": {
-        "issues": "https://github.com/whatthejeff/nyancat-phpunit-resultprinter/issues"
+        "issues": "https://github.com/codelicia/nyancat/issues"
     },
     "require": {
-        "php": "^7",
+        "php": "^7.4",
         "whatthejeff/nyancat-scoreboard": "~1.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5"
+        "phpunit/phpunit": "^9.0.0"
     },
     "autoload": {
         "psr-4": {
-            "NyanCat\\": "src/NyanCat"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
+            "Codelicia\\NyanCat\\": "src/"
         }
     },
     "scripts": {
